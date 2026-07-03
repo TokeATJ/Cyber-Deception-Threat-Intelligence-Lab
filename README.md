@@ -156,6 +156,8 @@ ssh root@10.0.2.5 -p 2222
 ```
 <img width="405" height="93" alt="image" src="https://github.com/user-attachments/assets/f3c9442c-5bf8-45db-a273-baae6f6d318f" />
 
+Arbitary password was sent to the cowrie logs
+
 <img width="559" height="159" alt="image" src="https://github.com/user-attachments/assets/86743a8b-943f-4075-aec2-a7d2aa12b26b" />
 
 
@@ -169,6 +171,13 @@ id
 ls
 cat /etc/passwd
 ```
+
+
+
+
+
+
+
 
 ## MITRE ATT&CK
 
