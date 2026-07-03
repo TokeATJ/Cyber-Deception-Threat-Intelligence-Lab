@@ -150,6 +150,10 @@ This intelligence can be leveraged to improve detections, enrich threat hunting 
 
 Capture attacker reconnaissance activity after gaining shell access.
 
+**Successfully created the ssh session**
+```bash
+ssh root@10.0.2.5 -p 2222
+```
 <img width="405" height="93" alt="image" src="https://github.com/user-attachments/assets/f3c9442c-5bf8-45db-a273-baae6f6d318f" />
 
 <img width="559" height="159" alt="image" src="https://github.com/user-attachments/assets/86743a8b-943f-4075-aec2-a7d2aa12b26b" />
