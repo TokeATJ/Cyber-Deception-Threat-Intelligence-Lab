@@ -3,7 +3,7 @@ Cowrie Honeypot Attack Stimulation
 
 ---
 
-Hydra Brute Force Attack Detection
+# Hydra Brute Force Attack Detection
 
 ## Objective
 
@@ -105,9 +105,7 @@ The honeypot recorded:
   grep "login attempt" ~/cowrie/var/log/cowrie/cowrie.log
   ```
 
-  <img width="466" height="67" alt="image" src="https://github.com/user-attachments/assets/ef488752-31a6-4c96-8f22-3c103f424abf" />
-
-
+ <img width="545" height="116" alt="image" src="https://github.com/user-attachments/assets/50e49b48-e0e6-4995-9677-1490f7d4bdea" />
 
 ---
 
@@ -146,69 +144,16 @@ This intelligence can be leveraged to improve detections, enrich threat hunting 
 
 ---
 
-## Outcome
-
-✅ Created custom password wordlist
-
-✅ Simulated automated credential attack using Hydra
-
-✅ Captured brute force activity in Cowrie
-
-✅ Generated authentication telemetry
-
-✅ Collected threat intelligence indicators
-
-✅ Mapped activity to MITRE ATT&CK T1110.001
-
-✅ Demonstrated Credential Access detection capabilities
-
----
-
-# Use Case 5: Successful Honeypot Compromise
-
-## Objective
-
-Capture attacker activity following successful authentication.
-
-## Attack Simulation
-
-```bash
-ssh root@10.0.2.5 -p 2222
-```
-
-Credentials Used:
-
-```text
-Username: root
-Password: password
-```
-
-## Evidence Collected
-
-```text
-root authenticated with password
-Getting shell
-```
-
-## MITRE ATT&CK
-
-- T1078.001 – Valid Accounts: Default Accounts
-
-## Outcome
-
-✅ Successful compromise simulated
-
-✅ Interactive shell established
-
-✅ Post-authentication telemetry generated
-
----
-
 # Use Case 6: Post-Compromise Discovery
 
 ## Objective
 
 Capture attacker reconnaissance activity after gaining shell access.
+
+<img width="405" height="93" alt="image" src="https://github.com/user-attachments/assets/f3c9442c-5bf8-45db-a273-baae6f6d318f" />
+
+<img width="559" height="159" alt="image" src="https://github.com/user-attachments/assets/86743a8b-943f-4075-aec2-a7d2aa12b26b" />
+
 
 ## Attack Simulation
 
